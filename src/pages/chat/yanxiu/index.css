@@ -11,7 +11,7 @@
 .message-item {
     display: flex;
     margin-bottom: 20px;
-    max-width: 80%;  /* 限制消息最大宽度 */
+    max-width: 85%;  /* 增加最大宽度 */
 }
 
 /* AI消息靠左 */
@@ -38,13 +38,13 @@
 
 /* 调整用户消息和AI消息的间距 */
 .message-item .avatar {
-    margin-right: 10px;
+    margin-right: 12px;  /* 增加间距 */
 }
 
 .message-item.user .avatar {
     margin-right: 0;
-    margin-left: 10px;
-    background-color: #95ec69;  /* 用户头像背景色 */
+    margin-left: 12px;  /* 增加间距 */
+    background-color: #95ec69;
 }
 
 .message-item .avatar .emoji {
@@ -53,9 +53,11 @@
 
 .message-content {
     background-color: #fff;
-    padding: 12px;
+    padding: 15px;  /* 增加内边距 */
     border-radius: 12px;
     position: relative;
+    line-height: 1.6;  /* 增加行高 */
+    font-size: 15px;  /* 调整字体大小 */
 }
 
 /* AI消息的小三角 */
@@ -92,24 +94,23 @@
 
 .message-content p {
     margin: 0;
-    font-size: 14px;
     color: #333;
-    line-height: 1.5;
+    line-height: 1.6;  /* 增加行高 */
 }
 
 .message-content p:not(:last-child) {
-    margin-bottom: 8px;
+    margin-bottom: 12px;  /* 增加段落间距 */
 }
 
 .message-content ul {
     padding-left: 20px;
-    margin: 8px 0;
+    margin: 12px 0;  /* 增加列表间距 */
 }
 
 .message-content li {
-    font-size: 14px;
     color: #333;
-    line-height: 1.8;
+    line-height: 1.8;  /* 增加列表项行高 */
+    margin-bottom: 8px;  /* 增加列表项间距 */
 }
 
 /* 输入区域样式 */
@@ -118,23 +119,23 @@
     bottom: 0;
     left: 0;
     right: 0;
-    max-width: 600px;
+    max-width: 800px;  /* 增加最大宽度 */
     margin: 0 auto;
-    padding: 10px 15px;
+    padding: 15px;  /* 增加内边距 */
     background-color: #fff;
     border-top: 1px solid #eee;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;  /* 增加间距 */
 }
 
 .message-input {
     flex: 1;
-    height: 36px;
-    padding: 0 12px;
+    height: 40px;  /* 增加输入框高度 */
+    padding: 0 15px;
     border: 1px solid #ddd;
-    border-radius: 18px;
-    font-size: 14px;
+    border-radius: 20px;
+    font-size: 15px;
     outline: none;
 }
 
@@ -143,13 +144,13 @@
 }
 
 .send-btn {
-    padding: 0 15px;
-    height: 36px;
+    padding: 0 20px;
+    height: 40px;  /* 增加按钮高度 */
     background-color: #1989fa;
     border: none;
-    border-radius: 18px;
+    border-radius: 20px;
     color: #fff;
-    font-size: 14px;
+    font-size: 15px;
     cursor: pointer;
 }
 
@@ -162,31 +163,34 @@
     color: #ff4d4f;
 }
 
-/* 在现有样式基础上添加以下样式 */
-
+/* 助手回复样式 */
 .message-content .assistant-response {
     white-space: pre-wrap;
     word-break: break-word;
 }
 
+/* 代码样式 */
 .message-content code {
     background-color: #f5f5f5;
-    padding: 2px 4px;
+    padding: 3px 6px;
     border-radius: 4px;
     font-family: monospace;
+    font-size: 14px;
 }
 
 .message-content pre {
     background-color: #f5f5f5;
-    padding: 10px;
-    border-radius: 4px;
+    padding: 15px;
+    border-radius: 6px;
     overflow-x: auto;
-    margin: 8px 0;
+    margin: 12px 0;
 }
 
 .message-content pre code {
     background-color: transparent;
     padding: 0;
+    display: block;
+    line-height: 1.6;
 }
 
 .message-content strong {
@@ -198,10 +202,10 @@
 }
 
 .message-content ul, .message-content ol {
-    padding-left: 20px;
-    margin: 8px 0;
+    padding-left: 24px;
+    margin: 12px 0;
 }
 
 .message-content li {
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 } 
