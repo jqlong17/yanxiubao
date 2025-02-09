@@ -19,6 +19,44 @@ document.addEventListener('DOMContentLoaded', () => {
         window.history.back();
     });
 
+    // 处理分享按钮点击
+    const shareBtn = document.querySelector('.share-btn');
+    if (shareBtn) {
+        shareBtn.addEventListener('click', async () => {
+            try {
+                // 获取当前页面URL
+                const url = window.location.href;
+                await navigator.clipboard.writeText(url);
+                
+                // 显示复制成功提示
+                showToast('链接已复制到剪贴板');
+            } catch (err) {
+                console.error('复制失败:', err);
+                showToast('复制失败，请重试');
+            }
+        });
+    }
+
+    // 显示提示信息
+    function showToast(message) {
+        // 创建或获取 toast 元素
+        let toast = document.querySelector('.copy-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.className = 'copy-toast';
+            document.body.appendChild(toast);
+        }
+        
+        // 设置消息并显示
+        toast.textContent = message;
+        toast.classList.add('show');
+        
+        // 2秒后隐藏
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 2000);
+    }
+
     async function sendMessage() {
         const message = messageInput.value.trim();
         if (!message) return;

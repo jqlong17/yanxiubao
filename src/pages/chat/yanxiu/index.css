@@ -209,4 +209,36 @@
 /* 移除头像中的 emoji */
 .avatar .emoji {
     display: none;
+}
+
+.share-btn {
+    font-size: 15px;
+    color: #1989fa;
+    cursor: pointer;
+    padding: 5px 10px;
+    user-select: none;
+}
+
+.share-btn:active {
+    opacity: 0.7;
+}
+
+/* 添加复制成功的提示样式 */
+.copy-toast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.copy-toast.show {
+    opacity: 1;
 } 
