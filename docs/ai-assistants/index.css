@@ -1,0 +1,120 @@
+.ai-assistants-page {
+    padding: 15px;
+    background-color: #f5f5f5;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.assistant-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 添加不同背景色的卡片样式 */
+.assistant-card.math {
+    background-color: #E3F2FD;  /* 浅蓝色背景 */
+}
+
+.assistant-card.edu {
+    background-color: #FCE4EC;  /* 浅粉色背景 */
+}
+
+.assistant-card.physics {
+    background-color: #F3E5F5;  /* 浅紫色背景 */
+}
+
+.assistant-card.chemistry {
+    background-color: #E8F5E9;  /* 浅绿色背景 */
+}
+
+.assistant-card.biology {
+    background-color: #FFF3E0;  /* 浅橙色背景 */
+}
+
+.assistant-card.moral {
+    background-color: #FFF3E0;  /* 浅橙色背景 */
+}
+
+/* 修改图标样式 */
+.assistant-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.assistant-icon .emoji {
+    font-size: 28px;  /* 调整emoji大小 */
+}
+
+/* 标签样式 */
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.tag {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #666;
+}
+
+/* 修改名称和描述样式 */
+.assistant-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.assistant-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+/* 添加即将上线样式 */
+.coming-soon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 8px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    font-size: 12px;
+    color: #666;
+}
+
+.online-status {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #52c41a;
+    margin-right: 4px;
+}
+
+.status-text {
+    font-size: 12px;
+    color: #52c41a;
+} 
