@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // 根据点击的子菜单项执行相应操作
             switch(itemText) {
                 case '研修AI助手':
-                    window.location.href = '../ai-assistants/index.html';
+                    window.location.href = 'src/pages/ai-assistants/index.html';
                     break;
                 case 'APP下载':
                     // 处理APP下载

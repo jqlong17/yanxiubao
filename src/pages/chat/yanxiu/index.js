@@ -36,9 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="message-content">
                     <p>${message}</p>
                 </div>
-                <div class="avatar">
-                    <span class="emoji">👤</span>
-                </div>
+                <div class="avatar"></div>
             </div>
         `;
         chatArea.insertAdjacentHTML('beforeend', userMessageHtml);
@@ -49,6 +47,19 @@ document.addEventListener('DOMContentLoaded', () => {
         
         try {
             console.log('开始调用Dify API...');
+            // 创建助手消息容器
+            const messageHtml = `
+                <div class="message-item">
+                    <div class="avatar"></div>
+                    <div class="message-content">
+                        <div class="assistant-response"></div>
+                    </div>
+                </div>
+            `;
+            chatArea.insertAdjacentHTML('beforeend', messageHtml);
+            const responseElement = chatArea.lastElementChild.querySelector('.assistant-response');
+            
+            // 开始流式响应
             const response = await fetch(`${API_URL}/chat-messages`, {
                 method: 'POST',
                 headers: {
@@ -72,24 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.log('API响应成功，开始处理流式响应');
             const reader = response.body.getReader();
-            let assistantMessage = '';
+            let currentParagraph = document.createElement('p');
+            responseElement.appendChild(currentParagraph);
 
-            // 创建一个新的消息容器
-            const messageHtml = `
-                <div class="message-item">
-                    <div class="avatar">
-                        <span class="emoji">👨‍🏫</span>
-                    </div>
-                    <div class="message-content">
-                        <div class="assistant-response"></div>
-                    </div>
-                </div>
-            `;
-            chatArea.insertAdjacentHTML('beforeend', messageHtml);
-            const messageContainer = chatArea.lastElementChild;
-            const responseElement = messageContainer.querySelector('.assistant-response');
-
-            // 处理流式响应
             while (true) {
                 const {done, value} = await reader.read();
                 if (done) break;
@@ -104,25 +100,39 @@ document.addEventListener('DOMContentLoaded', () => {
                             console.log('收到数据块:', data);
                             
                             if (data.event === 'message') {
-                                assistantMessage += data.answer;
-                                // 将Markdown格式的文本转换为HTML
-                                const formattedMessage = formatMessage(assistantMessage);
-                                responseElement.innerHTML = formattedMessage;
+                                // 处理新的文本
+                                const newContent = data.answer;
                                 
+                                // 检查是否需要创建新段落
+                                if (newContent.includes('\n')) {
+                                    const parts = newContent.split('\n');
+                                    parts.forEach((part, index) => {
+                                        if (part.trim()) {
+                                            if (index > 0) {
+                                                currentParagraph = document.createElement('p');
+                                                responseElement.appendChild(currentParagraph);
+                                            }
+                                            currentParagraph.textContent += part;
+                                        }
+                                    });
+                                } else {
+                                    currentParagraph.textContent += newContent;
+                                }
+
                                 // 保存对话ID
                                 if (data.conversation_id) {
                                     conversationId = data.conversation_id;
                                     console.log('更新对话ID:', conversationId);
                                 }
+
+                                // 滚动到底部
+                                chatArea.scrollTop = chatArea.scrollHeight;
                             }
                         } catch (e) {
                             console.error('解析响应数据失败:', e, line);
                         }
                     }
                 }
-
-                // 滚动到底部
-                chatArea.scrollTop = chatArea.scrollHeight;
             }
 
             console.log('流式响应处理完成');
@@ -132,9 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 显示错误消息
             const errorMessageHtml = `
                 <div class="message-item">
-                    <div class="avatar">
-                        <span class="emoji">👨‍🏫</span>
-                    </div>
+                    <div class="avatar"></div>
                     <div class="message-content">
                         <p class="error">抱歉，发生了一些错误，请稍后再试。</p>
                     </div>
@@ -153,9 +161,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // 处理标题
             .replace(/#{1,6} (.+)/g, '<strong>$1</strong>')
             // 处理无序列表
-            .replace(/^\* (.+)/gm, '• $1')
+            .replace(/^\* (.+)/gm, '<li>$1</li>')
+            .replace(/(?:^|\n)(\* .+\n?)+/g, '<ul>$&</ul>')
             // 处理有序列表
-            .replace(/^\d+\. (.+)/gm, '$1')
+            .replace(/^\d+\. (.+)/gm, '<li>$1</li>')
+            .replace(/(?:^|\n)(\d+\. .+\n?)+/g, '<ol>$&</ol>')
             // 处理粗体
             .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
             // 处理斜体
@@ -164,8 +174,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
             // 处理行内代码
             .replace(/`(.+?)`/g, '<code>$1</code>')
-            // 处理换行
-            .replace(/\n/g, '<br>');
+            // 处理段落，保持换行
+            .split('\n').map(line => line.trim() ? `<p>${line}</p>` : '').join('');
 
         console.log('格式化后的消息:', text);
         return text;

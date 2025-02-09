@@ -11,7 +11,7 @@
 .message-item {
     display: flex;
     margin-bottom: 20px;
-    max-width: 85%;  /* 增加最大宽度 */
+    max-width: 85%;
 }
 
 /* AI消息靠左 */
@@ -25,39 +25,35 @@
     align-self: flex-end;
 }
 
+/* 头像样式 */
 .message-item .avatar {
     width: 40px;
     height: 40px;
     flex-shrink: 0;
+    border-radius: 50%;
+    margin-right: 12px;
     background-color: #1989fa;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
 }
 
-/* 调整用户消息和AI消息的间距 */
-.message-item .avatar {
-    margin-right: 12px;  /* 增加间距 */
-}
-
+/* 用户头像样式 */
 .message-item.user .avatar {
     margin-right: 0;
-    margin-left: 12px;  /* 增加间距 */
+    margin-left: 12px;
     background-color: #95ec69;
-}
-
-.message-item .avatar .emoji {
-    font-size: 20px;
 }
 
 .message-content {
     background-color: #fff;
-    padding: 15px;  /* 增加内边距 */
+    padding: 15px;
     border-radius: 12px;
     position: relative;
-    line-height: 1.6;  /* 增加行高 */
-    font-size: 15px;  /* 调整字体大小 */
+    line-height: 1.6;
+    font-size: 15px;
+    max-width: 100%;
+    word-wrap: break-word;
 }
 
 /* AI消息的小三角 */
@@ -95,22 +91,22 @@
 .message-content p {
     margin: 0;
     color: #333;
-    line-height: 1.6;  /* 增加行高 */
+    line-height: 1.6;
 }
 
 .message-content p:not(:last-child) {
-    margin-bottom: 12px;  /* 增加段落间距 */
+    margin-bottom: 12px;
 }
 
 .message-content ul {
     padding-left: 20px;
-    margin: 12px 0;  /* 增加列表间距 */
+    margin: 12px 0;
 }
 
 .message-content li {
     color: #333;
-    line-height: 1.8;  /* 增加列表项行高 */
-    margin-bottom: 8px;  /* 增加列表项间距 */
+    line-height: 1.8;
+    margin-bottom: 8px;
 }
 
 /* 输入区域样式 */
@@ -119,19 +115,19 @@
     bottom: 0;
     left: 0;
     right: 0;
-    max-width: 800px;  /* 增加最大宽度 */
+    max-width: 800px;
     margin: 0 auto;
-    padding: 15px;  /* 增加内边距 */
+    padding: 15px;
     background-color: #fff;
     border-top: 1px solid #eee;
     display: flex;
     align-items: center;
-    gap: 12px;  /* 增加间距 */
+    gap: 12px;
 }
 
 .message-input {
     flex: 1;
-    height: 40px;  /* 增加输入框高度 */
+    height: 40px;
     padding: 0 15px;
     border: 1px solid #ddd;
     border-radius: 20px;
@@ -145,7 +141,7 @@
 
 .send-btn {
     padding: 0 20px;
-    height: 40px;  /* 增加按钮高度 */
+    height: 40px;
     background-color: #1989fa;
     border: none;
     border-radius: 20px;
@@ -208,4 +204,9 @@
 
 .message-content li {
     margin-bottom: 8px;
+}
+
+/* 移除头像中的 emoji */
+.avatar .emoji {
+    display: none;
 } 
