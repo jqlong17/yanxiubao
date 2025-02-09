@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>研修宝智能体 - 教育研修助手系统</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: #1e88e5;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        .subtitle {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .feature-card h3 {
+            color: #1e88e5;
+            margin-top: 0;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #1e88e5;
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            margin-top: 2rem;
+            transition: background 0.3s ease;
+        }
+        .cta-button:hover {
+            background: #1976d2;
+        }
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>研修宝智能体</h1>
+        <div class="subtitle">基于人工智能的教育研修助手系统</div>
+    </header>
+
+    <main>
+        <div class="features">
+            <div class="feature-card">
+                <h3>智能问答</h3>
+                <p>针对教育研修过程中的各类问题提供智能解答，帮助教师更好地理解和解决教学难题。</p>
+            </div>
+            <div class="feature-card">
+                <h3>多学科支持</h3>
+                <p>支持语文、数学、英语等多个学科的研修内容，全方位满足不同学科教师的专业发展需求。</p>
+            </div>
+            <div class="feature-card">
+                <h3>实时交互</h3>
+                <p>提供即时的问答和交流功能，让教师随时获取所需的专业支持和指导。</p>
+            </div>
+            <div class="feature-card">
+                <h3>资源共享</h3>
+                <p>支持研修资料的在线分享和管理，促进优质教育资源的有效流通和利用。</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="pages/home/index.html" class="cta-button">开始使用</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 研修宝智能体 版权所有</p>
+    </footer>
+</body>
+</html> 
